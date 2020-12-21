@@ -12,28 +12,38 @@ function updateSavedRecipeList()
     chrome.storage.sync.get( ['recipes'], 
     function(recipeList)
     {
+        var html = "";
         for(var i = 0; i < 16; i++)
         {
             if(i < recipeList.recipes.length)
             {
-                var img = document.createElement('img');   
-                img.src = recipeList.recipes[i]; 
-                var attach = document.getElementById('body');
-                attach.appendChild(img); 
+                var recipeInfo =
+                {             
+                    recipeURL: "",
+                    recipePictureURL: "",
+                    recipeType: "",
+                    recipeName: ""     
+                }
+
+                var info = recipeList.recipes[i]; 
+                html += (`<div>`);
+                html += (`<h2 id = "recipeName">` + info.recipeName + `</h2>`)
+                html += (`<a href=` + info.recipeURL + `>`)
+                html += (`<img src=` + info.recipePictureURL + `>`)                       
+                html += (`</a>`)
+                html +=(`</div>`);
             }
-            else
-            {
-                var img = document.createElement('img');
-                img.src = 'https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg'; 
-                var attach = document.getElementById('body');
-                attach.appendChild(img); 
-            }           
         }
+        $("div.row").append(html);
     }
     );
     
 }
 
+function createEntry()
+{
+    
+}
 
 function pageLoad()
 {

@@ -68,9 +68,19 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
         chrome.storage.sync.get( ['recipes'], 
         function(savedRecipeList)
         {
-            let activeRecipeList = savedRecipeList.recipes;            
-            activeRecipeList.push(request.source);            
+            let activeRecipeList = savedRecipeList.recipes;
+            var recipeInfo =
+            {             
+                recipeURL: "",
+                recipePictureURL: "",
+                recipeType: "",
+                recipeName: ""     
+            }
 
+            recipeInfo.recipeURL = url;
+            recipeInfo.recipePictureURL = request.source;
+            recipeInfo.recipeType = "Dinner";
+            activeRecipeList.push(recipeInfo);
             chrome.storage.sync.set({'recipes' : activeRecipeList}, function()
             {
                 // update active site here
