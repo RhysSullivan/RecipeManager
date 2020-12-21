@@ -1,6 +1,9 @@
-function el(query) {
-	return document.querySelector(query);
-}
+/*
+CREDIT TO THESE SOURCES:
+https://github.com/gopinav/Chrome-Extensions
+https://github.com/einaregilsson/Redirector
+*/
+
 
 function addSiteToVault()
 {
@@ -14,7 +17,7 @@ function addSiteToVault()
             activeRecipeList.push(url);
             chrome.storage.sync.set({'recipes' : activeRecipeList}, function()
             {
-                updateSavedRecipeList();
+                // update active site here
             });
         }
         );
@@ -22,41 +25,27 @@ function addSiteToVault()
     );
 }
 
-function updateSavedRecipeList()
+function loadVault()
 {
-    chrome.storage.sync.get( ['recipes'], 
-    function(recipeList)
-    {
-        for(var i = 0; i < 16; i++)
-        {
-            if(i < recipeList.recipes.length)
-            {
-                $('#el' + (i+1)).text(recipeList.recipes[i]);
-            }
-            else
-            {
-                $('#el' + (i+1)).text("");
-            }
-        }
-    }
-    );
-    
-}
-
-function clearVault()
-{
-    let activeRecipeList = [];
-    chrome.storage.sync.set({'recipes' : activeRecipeList}, function()
-    {
-        updateSavedRecipeList();
-    });
+    var url = chrome.extension.getURL('vault.html');
+    chrome.tabs.query({currentWindow:true}, function(tabs) {
+		for (var i=0; i < tabs.length; i++) {
+			if (tabs[i].url == url) {
+				chrome.tabs.update(tabs[i].id, {active:true}, function(tab) {
+					close();
+				});
+				return;
+			}
+		}
+		chrome.tabs.create({url:url, active:true});
+	});
+	return;
 }
 
 function pageLoad()
 {
     el('#add-button').addEventListener('click', addSiteToVault);
-    el('#clear-button').addEventListener('click', clearVault);
-    updateSavedRecipeList();
+    el('#vault-button').addEventListener('click', loadVault);
 }
 
 pageLoad();
