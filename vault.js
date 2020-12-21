@@ -16,12 +16,18 @@ function updateSavedRecipeList()
         {
             if(i < recipeList.recipes.length)
             {
-                $('#el' + (i+1)).text(recipeList.recipes[i]);
+                var img = document.createElement('img');   
+                img.src = recipeList.recipes[i]; 
+                var attach = document.getElementById('body');
+                attach.appendChild(img); 
             }
             else
             {
-                $('#el' + (i+1)).text("");
-            }
+                var img = document.createElement('img');
+                img.src = 'https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg'; 
+                var attach = document.getElementById('body');
+                attach.appendChild(img); 
+            }           
         }
     }
     );
