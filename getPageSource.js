@@ -3,7 +3,16 @@
 
 function DOMtoString(document_root) {
 
-    return $('meta[property="og:image"]').attr('content');
+    var recipeInfo =
+    {             
+                recipeURL: "",
+                recipePictureURL: "",
+                recipeType: "",
+                recipeName: ""     
+    }
+    recipeInfo.recipePictureURL = $('meta[property="og:image"]').attr('content');
+    recipeInfo.recipeName = $('meta[property="og:title"]').attr('content');
+    return recipeInfo;
 }
 
 chrome.runtime.sendMessage({

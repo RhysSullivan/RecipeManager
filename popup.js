@@ -7,9 +7,7 @@ https://github.com/einaregilsson/Redirector
 
 
 function addSiteToVault()
-{
-    var message = document.querySelector('#message');
-  
+{ 
     chrome.tabs.executeScript(null, { file: "jquery-3.5.1.min.js" },
      function()
      {
@@ -58,7 +56,6 @@ function pageLoad()
 
 chrome.runtime.onMessage.addListener(function(request, sender) {
     if (request.action == "getSource") {
-      message.innerText = request.source;
 
 
 
@@ -78,8 +75,9 @@ chrome.runtime.onMessage.addListener(function(request, sender) {
             }
 
             recipeInfo.recipeURL = url;
-            recipeInfo.recipePictureURL = request.source;
+            recipeInfo.recipePictureURL = request.source.recipePictureURL;
             recipeInfo.recipeType = "Dinner";
+            recipeInfo.recipeName = request.source.recipeName;
             activeRecipeList.push(recipeInfo);
             chrome.storage.sync.set({'recipes' : activeRecipeList}, function()
             {
