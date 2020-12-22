@@ -3,11 +3,11 @@ function clearVault()
     let activeRecipeList = [];
     chrome.storage.sync.set({'recipes' : activeRecipeList}, function()
     {
-        updateSavedRecipeList();
+        displayAllSavedRecipes();
     });
 }
 
-function updateSavedRecipeList()
+function displayAllSavedRecipes()
 {
     chrome.storage.sync.get( ['recipes'], 
     function(recipeList)
@@ -31,6 +31,7 @@ function updateSavedRecipeList()
                 html += (`<a href=` + info.recipeURL + `>`)
                 html += (`<img src=` + info.recipePictureURL + `>`)                       
                 html += (`</a>`)
+                html += (`<h2 id = "recipeName">` + intToRecipeTypeString(info.recipeType) + `</h2>`)
                 html +=(`</div>`);
             }
         }
@@ -40,15 +41,10 @@ function updateSavedRecipeList()
     
 }
 
-function createEntry()
-{
-    
-}
-
 function pageLoad()
 {
     el('#clear-button').addEventListener('click', clearVault);
-    updateSavedRecipeList();
+    displayAllSavedRecipes();
 }
 
 pageLoad();
