@@ -13,8 +13,12 @@
   overflow-wrap: break-word;
   hyphens: auto;
 }
-
-  
+.unselected{
+  background-color:rgb(230, 230, 230);
+}
+.selected{
+  background-color:darkgray;
+} 
   img {
     float: left;
     width:  200px;

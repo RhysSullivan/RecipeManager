@@ -6,24 +6,17 @@
 	</head>
 	<body id = "body" style = "text-align:center;">  
         <h2>VAULT</h2>
-        <button id="clear-button">Clear Site List</button>   
-    
-
-       
-        <div class="row" id = "recipeList">
-           
-            <!--
-            <div>
-                <h2 class = "recipeName">AAAAAAAAAAAAAAAAAAAAAAA</h2>
-                <img src='https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg'>
-             </div>
-             
-             <div>
-                <h2 class = "recipeName">AAAAAAAAAAA</h2>
-                <img src='https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg'>
-             </div>
--->
-            
+        <input type="text" id="search-input" name="search-input" value="" placeholder="search recipes">
+        <div></div>
+        <!--<button id="clear-button" class = "unselected">Clear List</button>  -->
+        <button id="main-dish-button">Main Dish</button>   
+        <button id="snack-button"    >Snack</button>   
+        <button id="side-dish-button">Side Dish</button>
+        <button id="dessert-button"  >Dessert</button>   
+        <button id="breakfast-button">Breakfast</button>   
+        <button id="misc-button">Misc</button> 
+        <!--<button id="see-all-button">See All</button>-->
+        <div class="row" id = "recipeList">            
         </div>
         
         <script src="jquery-3.5.1.min.js"></script>
@@ -31,3 +24,13 @@
         <script src="vault.js"></script>
     </body>  
 </html>
+
+    <!-- Example Entry
+                <div>
+                    <h2 class = "recipeName">AAAAAAAAAAAAAAAAAAAAAAA</h2>
+                    <img src='https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg'>
+                    <h2 id = "recipeName">Dessert</h2>
+                    <div></div>;
+                    <button id="">Remove</button>
+                 </div>
+    -->

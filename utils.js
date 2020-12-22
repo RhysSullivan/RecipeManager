@@ -26,6 +26,8 @@ function intToRecipeTypeString(intVal)
 			return "Dessert";
 		case 5:
 			return "Breakfast";
+		case 6:
+			return "Misc";
 		default:
 			return "Invalid";
 	}
@@ -46,6 +48,8 @@ function stringToRecipeTypeInt(strVal)
 		return 4;
 		case "Breakfast":
 		return 5;
+		case "Misc":
+		return 6;
 		default:
 			return -1;
 	}
