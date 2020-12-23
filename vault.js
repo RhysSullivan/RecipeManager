@@ -38,10 +38,11 @@ function displaySavedRecipes()
             html += (`<a href=` + info.recipeURL + `>`)
             html += (`<img src=` + info.recipePictureURL + `>`)
             html += (`</a>`)
-            html += `<h2 id = "recipeName">` + intToRecipeTypeString(info.recipeType) + `</h2>`;
+            //html += `<h2 id = "recipeName">` + intToRecipeTypeString(info.recipeType) + `</h2>`;
             html += `<div></div>`;
-            html += `<button id="remove-button-` + i + `" >Remove</button>`;
+            html += `<button id="remove-button-` + (numDisplayedRecipes) + `" >Remove</button>`;
             html += (`</div>`);
+            html += `<span></span>`;
             $("div.row").append(html);
             numDisplayedRecipes++;
         }
@@ -52,15 +53,13 @@ function displaySavedRecipes()
     }
     for(let j = 0; j < numDisplayedRecipes; j++)
     {
-        el('#remove-button-' + j).addEventListener('click', function(){removeElement(j)});
+        el('#remove-button-' + j).addEventListener('click', function(){removeElement(numDisplayedRecipes - 1 - j)});
     }    
-
-
 }
-
 
 function removeElement(index)
 {
+    console.log(index);
     recipeList.recipes.splice(index, 1);
     chrome.storage.sync.set({ 'recipes': recipeList.recipes}, function () {
         displaySavedRecipes();        

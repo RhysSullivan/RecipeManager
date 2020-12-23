@@ -1,26 +1,35 @@
-h2{
-    color:orange;
-}
-
 body {
-	width:180px;
+	width:300px;
 	text-align: center;
 	font-family: Arial, sans-serif;
 }
-
+img {
+    float: center;
+    width:  280px;
+    height: 280px;
+    object-fit: cover;
+}
 button {
-
+	width:  150px;
+    height: 30px;
 	display:block;
 	width:90%;
 	margin:5px auto !important;
 }
+.dropdown{
+	width:  150px;
+    height: 30px;
+	display:block;
+	width:90%;
+	margin:5px auto !important;
 
-.disabled {
-	margin-top:-16px;
-	color:red;
-	height:13px;
-	font-size:12px;
 }
-
+.text-entry{
+	width:  150px;
+    height: 30px;
+	display:block;
+	width:90%;
+	margin:5px auto !important;
+}
 nav ul{height:200px; width:80%;}
 nav ul{overflow:hidden; overflow-y:scroll;}

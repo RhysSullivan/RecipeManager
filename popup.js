@@ -4,6 +4,22 @@ https://github.com/gopinav/Chrome-Extensions
 https://github.com/einaregilsson/Redirector
 */
 
+function refreshVault()
+{
+  var url = chrome.extension.getURL('vault.html');
+  chrome.tabs.query({ currentWindow: true }, function (tabs) {
+    for (var i = 0; i < tabs.length; i++) {
+      if (tabs[i].url == url) {
+        chrome.tabs.reload(tabs[i].id);
+        //chrome.tabs.update(tabs[i].id, { active: true }, function (tab) {
+          //close();
+        //});
+        return;
+      }
+    }
+  }); 
+}
+
 
 function loadVault() {
   var url = chrome.extension.getURL('vault.html');
@@ -48,13 +64,14 @@ chrome.runtime.onMessage.addListener(function (request, sender) {
     {
       recipeURL: "",
       recipePictureURL: "",
-      recipeType: "",
+      recipeType: -1,
       recipeName: ""
     }
 
     recipeExtactedURL = request.source.recipePictureURL;
     recipeInfo.recipeName = request.source.recipeName;
     $("#recipeName").val(recipeInfo.recipeName);
+    $("#recipePicture").attr("src", request.source.recipePictureURL);
   }
 });
 
@@ -63,7 +80,8 @@ function addSiteToVault() {
     let url = tabs[0].url;
 
     chrome.storage.sync.get(['recipes'],
-      function (savedRecipeList) {
+      function (savedRecipeList) 
+      {
         let recipeInfo =
         {
           recipeURL: "",
@@ -84,6 +102,8 @@ function addSiteToVault() {
         chrome.storage.sync.set({ 'recipes': activeRecipeList }, function () {
           // update active site here
         });
+        refreshVault();
+        $("div.reicpe-entry").empty();
       }
     );
   }

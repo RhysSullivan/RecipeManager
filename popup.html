@@ -5,27 +5,24 @@
     <title>Recipe Manager</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-
 <body>
-    <h1>SAVE RECIPE</h1>
+    <h1>My Cookbook</h1>
     <button id="vault-button">Load Vault</button>
-
-    <input type="text" id="recipeName" name="recipeName" value="">
-
-    <div class="wrapper">
-        <select name="" id="recipe-type-dropdown" class="form-control">
-            <option value="">Main Dish</option>
-            <option value="">Snack</option>
-            <option value="">Side Dish</option>
-            <option value="">Dessert</option>
-            <option value="">Breakfast</option>
-            <option value="">Misc</option>
-        </select>
+    <div class="reicpe-entry">
+        <img src='https://rimatour.com/wp-content/uploads/2017/09/No-image-found-250x250.jpg' id="recipePicture">
+        <input type="text" class="text-entry" id="recipeName" name="recipeName" value="">
+        <div class="wrapper">
+            <select name="" id="recipe-type-dropdown" class="dropdown">
+                <option value="">Main Dish</option>
+                <option value="">Snack</option>
+                <option value="">Side Dish</option>
+                <option value="">Dessert</option>
+                <option value="">Breakfast</option>
+                <option value="">Misc</option>
+            </select>
+        </div>
+        <button id="add-button">Add Site</button>
     </div>
-
-
-    <button id="add-button">Add Site</button>
-
     <script src="jquery-3.5.1.min.js"></script>
     <script src="utils.js"></script>
     <script src="popup.js"></script>
